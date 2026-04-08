@@ -1,23 +1,20 @@
 
-#include "FloorMat.h"
+#include "Phong.h"
 #include "Node.h"
 #include <glm/gtc/type_ptr.hpp>
 #include <GLFW/include/glfw3.h>
-#include <Texture2D.h>
 
 
-FloorMat::FloorMat(string name, Texture2D* texture1, Texture2D* texture3) :
+PhongMaterial::PhongMaterial(string name) :
 	MaterialGL(name)
 {
 
-	vp = new GLProgram(MaterialPath + "FloorMat/Main-VS.glsl", GL_VERTEX_SHADER);
-	fp = new GLProgram(MaterialPath + "FloorMat/Main-FS.glsl", GL_FRAGMENT_SHADER);
+	vp = new GLProgram(MaterialPath + "Phong/Main-VS.glsl", GL_VERTEX_SHADER);
+	fp = new GLProgram(MaterialPath + "Phong/Main-FS.glsl", GL_FRAGMENT_SHADER);
 
 	m_ProgramPipeline->useProgramStage(vp, GL_VERTEX_SHADER_BIT);
 	m_ProgramPipeline->useProgramStage(fp, GL_FRAGMENT_SHADER_BIT);
 
-	m_Texture1 = texture1;
-	m_Texture3 = texture3;
 
 	l_View = glGetUniformLocation(vp->getId(), "View");
 	l_Proj = glGetUniformLocation(vp->getId(), "Proj");
@@ -26,21 +23,14 @@ FloorMat::FloorMat(string name, Texture2D* texture1, Texture2D* texture3) :
 	l_PosLum = glGetUniformLocation(vp->getId(), "posLum");
 	l_PosCam = glGetUniformLocation(vp->getId(), "posCam");
 
-	l_TextureHandle1 = glGetUniformLocation(fp->getId(), "textureHandle1");
-	l_TextureHandle3 = glGetUniformLocation(fp->getId(), "textureHandle3");
-
-	//m_Texture1->makeResident();
-	glProgramUniformHandleui64ARB(fp->getId(), l_TextureHandle1, m_Texture1->getHandle());
-	//m_Texture3->makeResident();
-	glProgramUniformHandleui64ARB(fp->getId(), l_TextureHandle3, m_Texture3->getHandle());
 }
 
-FloorMat::~FloorMat()
+PhongMaterial::~PhongMaterial()
 {
 
 }
 
-void FloorMat::render(Node* o)
+void PhongMaterial::render(Node* o)
 {
 
 
@@ -51,7 +41,7 @@ void FloorMat::render(Node* o)
 }
 
 
-void FloorMat::animate(Node* o, const float elapsedTime)
+void PhongMaterial::animate(Node* o, const float elapsedTime)
 {
 	/**********************************************
 	*
@@ -61,6 +51,8 @@ void FloorMat::animate(Node* o, const float elapsedTime)
 	- Une matrice 4X4 se transmet grace a glProgramUniformMatrix4fv
 
 	****************************************************/
+	//totalTime += elapsedTime / 100;
+	double time = glfwGetTime();
 
 	auto view = scene->camera()->getViewMatrix();
 	auto proj = scene->camera()->getProjectionMatrix();
@@ -72,8 +64,9 @@ void FloorMat::animate(Node* o, const float elapsedTime)
 	glProgramUniformMatrix4fv(vp->getId(), l_Proj, 1, GL_FALSE, glm::value_ptr(proj));
 	glProgramUniformMatrix4fv(vp->getId(), l_Model, 1, GL_FALSE, glm::value_ptr(model));
 	glProgramUniform3fv(vp->getId(), l_PosLum, 1, glm::value_ptr(posLum));
-	glProgramUniform3fv(vp->getId(), l_PosCam, 1, glm::value_ptr(posCam));
-	
+	glProgramUniform3fv(vp->getId(), l_PosCam , 1, glm::value_ptr(posCam));
+	glProgramUniform1f(vp->getId(), l_Time, static_cast<float>(time));
+
 
 
 

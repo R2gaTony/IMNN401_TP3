@@ -4,6 +4,7 @@ uniform mat4 Model;
 uniform mat4 View;
 uniform mat4 Proj;
 
+uniform float elapsedTime;
 uniform vec3 posLum;
 uniform vec3 posCam;
 
@@ -24,19 +25,21 @@ out val{
 };
 
 
+
+
+
 void main()
 {
     vec3 T = normalize(vec3(Model * tangeante));
-    //vec3 N = normalize(vec3(Model * vec4(Normal, 0.0)));
-    vec3 N = Normal;
+    vec3 N = normalize(vec3(Model * vec4(Normal, 0.0)));
 
     T = normalize(T - dot(T, N) * N);
 
     vec3 B = cross(N, T);
     mat3 TBN = mat3(T, B, N);
 
-    L = transpose(TBN) * (posLum - Position);
-    V = transpose(TBN) * (posCam - Position);
+    L = (posLum - Position) * transpose(TBN);
+    V =  (posCam - Position) * transpose(TBN);
 
     gl_Position = Proj * View* Model * vec4(Position,1.0);
     uv = textures.xy;   

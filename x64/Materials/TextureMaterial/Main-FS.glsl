@@ -15,8 +15,8 @@ in val{
 
 void main()
 {
-    vec4 normal = (texture(textureHandle3, uv) * 2.0 - 1.0);
-    vec3 N = normal.xyz;
+    vec4 normal = (texture(textureHandle3, uv) * 2) - 1;
+    vec3 N = normalize(normal.xyz);
 
 	vec3 White = vec3(1,1,1);
     vec3 LNorm = normalize(L);

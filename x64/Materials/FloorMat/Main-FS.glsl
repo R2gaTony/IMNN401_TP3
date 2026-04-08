@@ -2,7 +2,6 @@
 #extension GL_ARB_bindless_texture: require
 
 layout(bindless_sampler) uniform sampler2D textureHandle1;
-layout(bindless_sampler) uniform sampler2D textureHandle2;
 layout(bindless_sampler) uniform sampler2D textureHandle3;
 
 layout (location = 0) out vec4 Color;
@@ -15,13 +14,13 @@ in val{
 
 void main()
 {
-    vec4 normal = (texture(textureHandle3, uv) * 2.0 - 1.0);
-    vec3 N = normal.xyz;
+    vec4 normal = (texture(textureHandle3, uv) * 2) - 1;
+    vec3 N = normalize(normal.xyz);
 
 	vec3 White = vec3(1,1,1);
     vec3 LNorm = normalize(L);
     vec3 VNorm = normalize(V);
-    vec3 NNorm = normalize(N);
+    vec3 NNorm = N;
     vec3 R = reflect(-LNorm, NNorm);
 
     float angle = max(dot(NNorm,LNorm),0.0);
@@ -33,8 +32,6 @@ void main()
     vec3 specular = pow(max(dot(R,VNorm),0.0), 32) * White;
 
     vec4 texColor = texture(textureHandle1, uv);
-    vec4 texColor2 = texture(textureHandle2, uv);
-    vec4 texColorMixed = mix(texColor, texColor2, 0.5);
 
-	Color = vec4((diffuse + ambiant + specular) * texColorMixed.xyz, 1.0);
+	Color = vec4((diffuse + ambiant + specular) * texColor.xyz, 1.0);
 }

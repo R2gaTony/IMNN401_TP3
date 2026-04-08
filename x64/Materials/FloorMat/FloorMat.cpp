@@ -29,10 +29,6 @@ FloorMat::FloorMat(string name, Texture2D* texture1, Texture2D* texture3) :
 	l_TextureHandle1 = glGetUniformLocation(fp->getId(), "textureHandle1");
 	l_TextureHandle3 = glGetUniformLocation(fp->getId(), "textureHandle3");
 
-	//m_Texture1->makeResident();
-	glProgramUniformHandleui64ARB(fp->getId(), l_TextureHandle1, m_Texture1->getHandle());
-	//m_Texture3->makeResident();
-	glProgramUniformHandleui64ARB(fp->getId(), l_TextureHandle3, m_Texture3->getHandle());
 }
 
 FloorMat::~FloorMat()
@@ -73,7 +69,10 @@ void FloorMat::animate(Node* o, const float elapsedTime)
 	glProgramUniformMatrix4fv(vp->getId(), l_Model, 1, GL_FALSE, glm::value_ptr(model));
 	glProgramUniform3fv(vp->getId(), l_PosLum, 1, glm::value_ptr(posLum));
 	glProgramUniform3fv(vp->getId(), l_PosCam, 1, glm::value_ptr(posCam));
-	
+	m_Texture1->makeResident();
+	glProgramUniformHandleui64ARB(fp->getId(), l_TextureHandle1, m_Texture1->getHandle());
+	m_Texture3->makeResident();
+	glProgramUniformHandleui64ARB(fp->getId(), l_TextureHandle3, m_Texture3->getHandle());
 
 
 

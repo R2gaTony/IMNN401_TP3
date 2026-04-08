@@ -31,15 +31,16 @@ out val{
 void main()
 {
     vec3 T = normalize(vec3(Model * tangeante));
-    vec3 N = normalize(vec3(Model * vec4(Normal, 0.0)));
+    //vec3 N = normalize(vec3(Model * vec4(Normal, 0.0)));
+    vec3 N = Normal;
 
     T = normalize(T - dot(T, N) * N);
 
     vec3 B = cross(N, T);
     mat3 TBN = mat3(T, B, N);
 
-    L = (posLum - Position) * transpose(TBN);
-    V =  (posCam - Position) * transpose(TBN);
+    L = transpose(TBN) * (posLum - Position);
+    V = transpose(TBN) * (posCam - Position);
 
     gl_Position = Proj * View* Model * vec4(Position,1.0);
     uv = textures.xy;   

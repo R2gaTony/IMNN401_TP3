@@ -14,13 +14,13 @@ in val{
 
 void main()
 {
-    vec4 normal = (texture(textureHandle3, uv) * 2) - 1;
-    vec3 N = normalize(normal.xyz);
+    vec4 normal = (texture(textureHandle3, uv) * 2.0 - 1.0);
+    vec3 N = normal.xyz;
 
 	vec3 White = vec3(1,1,1);
     vec3 LNorm = normalize(L);
     vec3 VNorm = normalize(V);
-    vec3 NNorm = N;
+    vec3 NNorm = normalize(N);
     vec3 R = reflect(-LNorm, NNorm);
 
     float angle = max(dot(NNorm,LNorm),0.0);
