@@ -14,11 +14,10 @@ void main()
 	int compteur = 0;
 
 	for(int i = -k; i <= k; i++){
-		for(int j = -k; j <= k; j++){
-			vec2 offset = vec2(i, j) / vec2(size);
-			c = c + texture(myFBO, uv.xy + offset).rgb;
-			compteur++;
-		}
+		vec2 offset = vec2(0, i) / vec2(size);
+		c = c + texture(myFBO, uv.xy + offset).rgb;
+		compteur++;
+
 	}
 
 	Color = vec4(c.rgb/compteur,1.0);

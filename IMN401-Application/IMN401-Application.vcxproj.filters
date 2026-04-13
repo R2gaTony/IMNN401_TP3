@@ -289,5 +289,11 @@
     <None Include="..\Effects\Flou\Flou-FS.glsl">
       <Filter>Effects\Flou</Filter>
     </None>
+    <None Include="..\Effects\Flou\FlouHorizontal-FS.glsl">
+      <Filter>Effects\Flou</Filter>
+    </None>
+    <None Include="..\Effects\Flou\FlouVertical-FS.glsl">
+      <Filter>Effects\Flou</Filter>
+    </None>
   </ItemGroup>
 </Project>

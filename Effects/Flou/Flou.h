@@ -28,6 +28,9 @@ public:
 protected:
 	GLProgram* vp;
 	GLProgram* fp;
+	GLProgram* fph;
+	GLProgram* fpv;
+	FrameBufferObject* tmp;
 	GLuint l_Texture, l_constante;
 	
 

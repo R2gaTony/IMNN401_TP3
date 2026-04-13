@@ -176,10 +176,8 @@ void EngineGL::render ()
 		allNodes->nodes[i]->render();
 
 	// TP4
-	auto tempFBO = new FrameBufferObject();
 	myFBO->disable(); 
-	flou->apply(myFBO, tempFBO);
-	display->apply(tempFBO, NULL);
+	flou->apply(myFBO, NULL);
 
 
 }

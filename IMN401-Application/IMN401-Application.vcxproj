@@ -92,6 +92,8 @@
   <ItemGroup>
     <None Include="..\Effects\common\Effect-VS.glsl" />
     <None Include="..\Effects\Flou\Flou-FS.glsl" />
+    <None Include="..\Effects\Flou\FlouHorizontal-FS.glsl" />
+    <None Include="..\Effects\Flou\FlouVertical-FS.glsl" />
     <None Include="..\Materials\BaseMaterial\Main-FS.glsl" />
     <None Include="..\Materials\BaseMaterial\Main-VS.glsl" />
     <None Include="..\Materials\FloorMat\Main-FS.glsl" />
