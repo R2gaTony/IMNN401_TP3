@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Effects\Display\Display.cpp" />
+    <ClCompile Include="..\Effects\Flou\Flou.cpp" />
     <ClCompile Include="..\Materials\BaseMaterial\BaseMaterial.cpp" />
     <ClCompile Include="..\Materials\FloorMat\FloorMat.cpp" />
     <ClCompile Include="..\Materials\Phong\Phong.cpp" />
@@ -52,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Effects\Display\Display.h" />
+    <ClInclude Include="..\Effects\Flou\Flou.h" />
     <ClInclude Include="..\include\Application.h" />
     <ClInclude Include="..\include\Camera.h" />
     <ClInclude Include="..\include\EffectGL.h" />
@@ -89,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Effects\common\Effect-VS.glsl" />
+    <None Include="..\Effects\Flou\Flou-FS.glsl" />
     <None Include="..\Materials\BaseMaterial\Main-FS.glsl" />
     <None Include="..\Materials\BaseMaterial\Main-VS.glsl" />
     <None Include="..\Materials\FloorMat\Main-FS.glsl" />

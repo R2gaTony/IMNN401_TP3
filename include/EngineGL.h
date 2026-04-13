@@ -14,6 +14,7 @@
 #include "FrameBufferObject.h"
 
 #include "Effects/Display/Display.h"
+#include <Effects/Flou/Flou.h>
  /**
   * @brief      This class is the parent class for creating an forward rendering engine using OpenGL
   *
@@ -117,6 +118,6 @@ protected:
 	// For TP 4
 	FrameBufferObject* myFBO;
 	Display* display;
-
+	Flou* flou;
 };
 #endif

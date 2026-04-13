@@ -106,6 +106,9 @@ bool EngineGL::init()
 	// 
 
 	// d'un objet, méthode détaillée
+	myFBO = new FrameBufferObject();
+	display = new Display("myDisplay");
+	flou = new Flou("myFlou");
 	Texture2D* bunnyTexture1 = new Texture2D(ObjPath + "Textures/Bunny1.png");
 	Texture2D* bunnyTexture2 = new Texture2D(ObjPath + "Textures/Bunny2.png");
 	Texture2D* bunnyTexture3 = new Texture2D(ObjPath + "Textures/Bunny_N.png");
@@ -164,13 +167,21 @@ bool EngineGL::init()
 
 void EngineGL::render ()
 {
-		
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // TP4
+	myFBO->enable(); // TP4
+
 	glEnable(GL_DEPTH_TEST);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (unsigned int i = 0; i < allNodes->nodes.size(); i++)
 		allNodes->nodes[i]->render();
-	
-	
+
+	// TP4
+	auto tempFBO = new FrameBufferObject();
+	myFBO->disable(); 
+	flou->apply(myFBO, tempFBO);
+	display->apply(tempFBO, NULL);
+
+
 }
 
 void EngineGL::animate (const float elapsedTime)

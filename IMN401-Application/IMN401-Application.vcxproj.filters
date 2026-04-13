@@ -49,6 +49,9 @@
     <Filter Include="Materials\TextureMaterial">
       <UniqueIdentifier>{e0a0d650-e388-4d0e-988c-045d83b663aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Effects\Flou">
+      <UniqueIdentifier>{f76c00e3-8eac-4961-9d48-bb1041b79c52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Application.cpp">
@@ -140,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="..\Materials\TextureMaterial\TextureMaterial.cpp">
       <Filter>Materials\TextureMaterial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Effects\Flou\Flou.cpp">
+      <Filter>Effects\Flou</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +254,9 @@
     <ClInclude Include="..\Materials\TextureMaterial\TextureMaterial.h">
       <Filter>Materials\TextureMaterial</Filter>
     </ClInclude>
+    <ClInclude Include="..\Effects\Flou\Flou.h">
+      <Filter>Effects\Flou</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Effects\common\Effect-VS.glsl">
@@ -276,6 +285,9 @@
     </None>
     <None Include="..\Materials\TextureMaterial\Main-VS.glsl">
       <Filter>Materials\TextureMaterial</Filter>
+    </None>
+    <None Include="..\Effects\Flou\Flou-FS.glsl">
+      <Filter>Effects\Flou</Filter>
     </None>
   </ItemGroup>
 </Project>
